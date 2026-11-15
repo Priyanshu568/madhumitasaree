@@ -1,0 +1,350 @@
+:root {
+  --sindoor: #5A1220;
+  --sindoor-dark: #3D0B15;
+  --zari-gold: #D4AF37;
+  --zari-light: #F5E1A4;
+  --tussar-cream: #FAF6F0;
+  --ink-brown: #2A1810;
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--tussar-cream);
+  color: var(--ink-brown);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .serif-font {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.mono-font {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ==========================================================================
+   1. SHIMMERING ZARI GOLD TEXT & AMBIENT HERO PARTICLES
+   ========================================================================== */
+.gold-shimmer {
+  background: linear-gradient(90deg, #C59B27 0%, #FFF2C6 35%, #D4AF37 65%, #FFF2C6 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: zariShine 4.5s linear infinite;
+}
+
+@keyframes zariShine {
+  to {
+    background-position: 220% center;
+  }
+}
+
+.hero-zari-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.zari-sparkle {
+  position: absolute;
+  bottom: -16px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #FFF4CC 0%, #D4AF37 65%, transparent 100%);
+  opacity: 0;
+  animation: floatZariParticle linear infinite;
+}
+
+@keyframes floatZariParticle {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.75;
+  }
+  80% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(-540px) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   2. HERO ENTRANCE & 3D FLOATING SHOWCASE CARD
+   ========================================================================== */
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: heroFadeUp 0.85s var(--ease-luxury) forwards;
+}
+
+.hero-delay-1 { animation-delay: 0.08s; }
+.hero-delay-2 { animation-delay: 0.18s; }
+.hero-delay-3 { animation-delay: 0.28s; }
+.hero-delay-4 { animation-delay: 0.38s; }
+.hero-delay-5 { animation-delay: 0.48s; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-showcase-float {
+  animation: gentleLevitate 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transition: transform 0.25s var(--ease-luxury), box-shadow 0.4s var(--ease-luxury);
+}
+
+.hero-showcase-float:hover {
+  animation-play-state: paused;
+  box-shadow: 0 28px 55px -12px rgba(212, 175, 55, 0.32);
+}
+
+@keyframes gentleLevitate {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* ==========================================================================
+   3. NAVIGATION UNDERLINE & TACTILE BUTTON MICRO-INTERACTIONS
+   ========================================================================== */
+header nav a {
+  position: relative;
+  padding-bottom: 3px;
+}
+
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--sindoor), var(--zari-gold));
+  transition: width 0.3s var(--ease-luxury), left 0.3s var(--ease-luxury);
+  border-radius: 2px;
+}
+
+header nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Silk Sheen Sweep Effect on Buttons */
+.btn-silk-sheen {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.3s var(--ease-luxury), background-color 0.25s ease;
+}
+
+.btn-silk-sheen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.65s var(--ease-luxury);
+  pointer-events: none;
+}
+
+.btn-silk-sheen:hover::before {
+  left: 145%;
+}
+
+.btn-silk-sheen:hover {
+  transform: translateY(-2px);
+}
+
+.btn-silk-sheen:active {
+  transform: scale(0.97);
+}
+
+/* Cart Bag Pop Animation */
+.bag-pop {
+  animation: bagSpringPop 0.55s var(--ease-spring);
+}
+
+@keyframes bagSpringPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.16) rotate(-3deg); box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.35); }
+  70% { transform: scale(0.95) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Category Filter Pills */
+.cat-pill {
+  transition: transform 0.25s var(--ease-spring), background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cat-pill:hover {
+  transform: translateY(-2px);
+}
+
+.cat-pill.active {
+  box-shadow: 0 8px 18px -6px rgba(90, 18, 32, 0.45);
+}
+
+/* ==========================================================================
+   4. SAREE PRODUCT CARDS & SCROLL-REVEAL CHOREOGRAPHY
+   ========================================================================== */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 0.65s var(--ease-luxury), transform 0.65s var(--ease-luxury);
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.saree-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-luxury), box-shadow 0.4s var(--ease-luxury), border-color 0.3s ease;
+}
+
+.saree-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(245, 225, 164, 0.22) 50%,
+    transparent 100%
+  );
+  transform: skewX(-22deg);
+  transition: left 0.75s var(--ease-luxury);
+  pointer-events: none;
+}
+
+.saree-card:hover::after {
+  left: 155%;
+}
+
+.saree-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--zari-gold);
+  box-shadow: 0 22px 40px -14px rgba(90, 18, 32, 0.22);
+}
+
+.saree-card img {
+  transition: transform 0.7s var(--ease-luxury);
+}
+
+.saree-card:hover img {
+  transform: scale(1.07);
+}
+
+/* ==========================================================================
+   5. MODAL SPRING ENTRANCES & TOAST ANIMATION
+   ========================================================================== */
+.modal-animate-in {
+  animation: modalSpringIn 0.38s var(--ease-spring) forwards;
+}
+
+@keyframes modalSpringIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-slide-in {
+  animation: toastGlide 0.35s var(--ease-spring) forwards;
+}
+
+@keyframes toastGlide {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF6F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8B2639;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5A1220;
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-up, .hero-stagger {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Print Stylesheet for Clean GST Payment Receipts */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+  }
+
+  #checkoutModal {
+    position: static !important;
+    background: #FFFFFF !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .printable-area {
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madhumita Fab Fashion | Heritage Sarees of Ranaghat (Est. 1980)</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS for Interactive GPS Store Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="antialiased selection:bg-[#5A1220] selection:text-[#FAF6F0]">
+
+  <!-- Top Festive Marquee Announcement Bar -->
+  <div class="bg-[#3D0B15] text-[#FAF6F0] text-xs py-2.5 px-4 border-b border-[#D4AF37]/30 relative z-40 no-print">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#D4AF37] animate-ping"></span>
+        <span class="font-medium tracking-wide">
+          🪔 <strong>DIWALI &amp; WEDDING UTSAV:</strong> Flat <span class="text-[#F5E1A4] font-bold">20% OFF</span> on all Sarees (Code: <code class="bg-[#5A1220] px-1.5 py-0.5 rounded border border-[#D4AF37]/40 text-[#F5E1A4]">DIWALI20</code>) | <span class="text-[#F5E1A4] font-bold">25% OFF</span> Bulk Orders ₹10,000+ (<code class="bg-[#5A1220] px-1.5 py-0.5 rounded border border-[#D4AF37]/40 text-[#F5E1A4]">BULK25</code>)
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <button onclick="openSaleModal()" class="text-[#F5E1A4] underline hover:text-white font-semibold">Claim Festive Coupon</button>
+        <span class="hidden md:inline text-white/40">|</span>
+        <a href="#gps-section" class="hidden md:inline-flex items-center gap-1 text-[#FAF6F0]/90 hover:text-[#F5E1A4]">
+          📍 Subhas Ave, Ranaghat - 741201
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="sticky top-0 z-30 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-[#D4AF37]/25 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- Brand Identity -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-full bg-[#5A1220] border-2 border-[#D4AF37] flex items-center justify-center text-[#F5E1A4] serif-font font-bold text-2xl shadow-md">
+          M
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="serif-font text-2xl sm:text-3xl font-bold tracking-tight text-[#5A1220]">Madhumita</span>
+            <span class="text-[10px] uppercase tracking-widest bg-[#5A1220] text-[#F5E1A4] px-2 py-0.5 rounded font-semibold">Fab Fashion</span>
+          </div>
+          <p class="text-[11px] text-[#7A6A63] tracking-wider uppercase font-medium">Est. 1980 • Subhas Ave, Ranaghat</p>
+        </div>
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-5 text-sm font-medium text-[#2A1810]">
+        <a href="#catalog-section" class="hover:text-[#5A1220] transition">Saree Collection</a>
+        <a href="#gps-section" class="hover:text-[#5A1220] transition flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-600"></span> GPS Locator
+        </a>
+        <a href="#database-section" class="hover:text-[#5A1220] transition flex items-center gap-1.5 font-semibold text-[#5A1220]">
+          🔒 Access for Admin
+        </a>
+        <button onclick="openSaleModal()" class="text-[#5A1220] font-semibold flex items-center gap-1 bg-[#D4AF37]/20 px-3 py-1.5 rounded-full border border-[#D4AF37]/50 hover:bg-[#D4AF37]/30 transition">
+          🪔 Diwali 20% Sale
+        </button>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="openCheckoutModal()" class="px-3.5 py-2 rounded-full bg-[#D4AF37]/20 text-[#5A1220] border border-[#D4AF37] text-xs font-bold hover:bg-[#D4AF37]/35 transition flex items-center gap-1.5">
+          💳 Order &amp; Payment
+        </button>
+
+        <button onclick="toggleCartDrawer(true)" class="relative flex items-center gap-2 bg-[#5A1220] text-[#FAF6F0] px-4 py-2.5 rounded-full text-xs font-semibold hover:bg-[#3D0B15] transition shadow-md">
+          <span>🛍️ Bag</span>
+          <span id="cartCountBadge" class="bg-[#D4AF37] text-[#2A1810] font-bold px-2 py-0.5 rounded-full text-[11px]">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#3D0B15] via-[#5A1220] to-[#2A0810] text-[#FAF6F0] py-14 lg:py-20 border-b-2 border-[#D4AF37] no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex flex-wrap items-center gap-2 bg-white/10 backdrop-blur-sm border border-[#D4AF37]/40 rounded-full px-4 py-1.5 text-xs">
+            <span class="text-[#F5E1A4] font-semibold">★ 4.4 Rated in Ranaghat</span>
+            <span class="text-white/30">•</span>
+            <span>46 Years of Handloom Trust (Since 1980)</span>
+          </div>
+
+          <h1 class="serif-font text-4xl sm:text-6xl font-bold leading-[1.1] tracking-tight">
+            Timeless Bengal Weaves from <span class="gold-shimmer">Madhumita Fab Fashion</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#FAF6F0]/85 max-w-2xl leading-relaxed">
+            Located on Subhas Avenue, Ranaghat. Explore authentic Fulia Tant, Resham Dhakai Jamdani, Pure Silk Baluchari, Bridal Banarasi, and Kanjeevaram sarees—complete with live GPS delivery tracking, direct UPI QR checkout, and instant printable receipts.
+          </p>
+
+          <!-- Live GPS Distance Banner inside Hero -->
+          <div class="bg-black/25 border border-[#D4AF37]/35 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-lg">
+                📍
+              </div>
+              <div>
+                <p id="heroGpsStatus" class="text-xs font-semibold text-[#F5E1A4]">Showroom: Subhas Ave, Ranaghat, West Bengal 741201</p>
+                <p id="heroGpsSub" class="text-[11px] text-white/75">Click "Detect My GPS" to check live distance &amp; same-day Ranaghat delivery eligibility.</p>
+              </div>
+            </div>
+            <button onclick="detectUserGPS()" class="shrink-0 bg-[#D4AF37] text-[#2A1810] hover:bg-[#F5E1A4] font-bold text-xs px-4 py-2.5 rounded-xl transition shadow">
+              📡 Detect My GPS
+            </button>
+          </div>
+
+          <!-- Primary CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#catalog-section" class="bg-[#F5E1A4] text-[#3D0B15] hover:bg-white font-bold px-7 py-3.5 rounded-full text-sm transition shadow-lg">
+              Explore Saree Catalog →
+            </a>
+            <a href="#database-section" class="bg-white/10 hover:bg-white/20 text-white border border-[#D4AF37]/60 font-semibold px-6 py-3.5 rounded-full text-sm transition">
+              🔒 Access for Admin
+            </a>
+          </div>
+        </div>
+
+        <!-- Featured Saree Showcase Card -->
+        <div class="lg:col-span-5">
+          <div class="relative rounded-3xl overflow-hidden border-2 border-[#D4AF37] shadow-2xl bg-[#2A0810] group">
+            <img
+              src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85"
+              onerror="handleImgError(this, 'Bridal Katan Banarasi')"
+              alt="Madhumita Royal Bridal Banarasi"
+              class="w-full h-[420px] object-cover object-top group-hover:scale-105 transition duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4 bg-[#5A1220] text-[#F5E1A4] border border-[#D4AF37] text-xs font-bold px-3 py-1 rounded-full">
+              🪔 DIWALI SPOTLIGHT • 20% OFF
+            </div>
+            <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-widest text-[#F5E1A4]">Showroom Bestseller</p>
+                <h3 class="serif-font text-2xl font-bold text-white">Subhas Ave Bridal Katan Banarasi</h3>
+                <p class="text-sm text-white/80 mt-0.5">₹6,850 <span class="line-through text-white/50 text-xs ml-1">₹8,500</span></p>
+              </div>
+              <button onclick="buyNowDirect(1)" class="bg-[#D4AF37] hover:bg-[#F5E1A4] text-[#2A1810] font-bold text-xs px-4 py-2.5 rounded-xl shadow">
+                ⚡ Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Saree Catalog Section -->
+  <section id="catalog-section" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-[#5A1220]">Direct from Nadia Weavers &amp; Ranaghat Showroom</span>
+        <h2 class="serif-font text-3xl sm:text-4xl font-bold text-[#2A1810] mt-1">Curated Saree Collection</h2>
+      </div>
+
+      <!-- Search & Sort Controls -->
+      <div class="flex flex-wrap items-center gap-3">
+        <input id="searchInput" oninput="renderCatalog()" type="text" placeholder="Search Jamdani, Tant, Banarasi..." class="px-4 py-2 rounded-full border border-[#D4AF37]/50 bg-white text-sm focus:outline-none focus:border-[#5A1220]" />
+        <select id="sortSelect" onchange="renderCatalog()" class="px-4 py-2 rounded-full border border-[#D4AF37]/50 bg-white text-sm focus:outline-none focus:border-[#5A1220]">
+          <option value="featured">Sort: Featured Bestsellers</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div id="categoryPills" class="flex items-center gap-2 overflow-x-auto pb-4 mb-6">
+      <button onclick="setCategory('All')" data-cat="All" class="cat-pill active px-4 py-2 rounded-full text-xs font-bold bg-[#5A1220] text-[#FAF6F0] transition shrink-0">All Weaves (8)</button>
+      <button onclick="setCategory('Tant & Handloom')" data-cat="Tant & Handloom" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Fulia &amp; Shantipur Tant</button>
+      <button onclick="setCategory('Dhakai Jamdani')" data-cat="Dhakai Jamdani" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Dhakai Jamdani</button>
+      <button onclick="setCategory('Bridal Banarasi')" data-cat="Bridal Banarasi" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Bridal Banarasi</button>
+      <button onclick="setCategory('Baluchari & Silk')" data-cat="Baluchari & Silk" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Bishnupur Baluchari &amp; Silk</button>
+      <button onclick="setCategory('Party & Festive')" data-cat="Party & Festive" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Organza &amp; Partywear</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </section>
+
+  <!-- Admin-Only Order & Stock Dashboard (Hidden from Public View) -->
+  <section id="database-section" class="hidden py-14 bg-[#2A0810] text-[#FAF6F0] border-y-2 border-[#D4AF37] no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-[#F5E1A4]">🔐 Showroom Management • Restricted Admin View</span>
+          <h2 class="serif-font text-3xl sm:text-4xl font-bold text-white mt-1">Showroom Admin Order Dashboard</h2>
+          <p class="text-xs text-white/75 mt-1 max-w-2xl">
+            Manage verified customer orders, contact numbers, delivery addresses, live saree stock quantities, and printable GST receipts.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="downloadMongoJson()" class="px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition">
+            Export Ledger
+          </button>
+        </div>
+      </div>
+
+      <!-- Visual Orders Table -->
+      <div id="dbPanel-records" class="db-panel bg-white text-[#2A1810] rounded-3xl overflow-hidden border-2 border-[#D4AF37] shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-[#5A1220] text-[#F5E1A4] uppercase tracking-wider text-[11px]">
+                <th class="py-3.5 px-4">Order ID &amp; Date</th>
+                <th class="py-3.5 px-4">Customer Details &amp; Mobile</th>
+                <th class="py-3.5 px-4">Purchased Saree(s)</th>
+                <th class="py-3.5 px-4">Payment Mode &amp; Ref</th>
+                <th class="py-3.5 px-4">Total Paid</th>
+                <th class="py-3.5 px-4 text-right">Receipt Document</th>
+              </tr>
+            </thead>
+            <tbody id="dbRecordsTableBody" class="divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live GPS Store Locator & Ranaghat Delivery Hub -->
+  <section id="gps-section" class="py-14 bg-[#F3ECE1] border-b border-[#D4AF37]/30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 space-y-5 bg-white p-6 rounded-3xl border border-[#D4AF37]/40 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-widest text-[#5A1220]">📍 Verified Flagship Showroom</span>
+            <span id="storeOpenBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Checking Hours...</span>
+          </div>
+
+          <h3 class="serif-font text-3xl font-bold text-[#2A1810]">Madhumita Fab Fashion</h3>
+          <p class="text-sm text-[#5A4A42] leading-relaxed">
+            <strong>Address:</strong> Subhas Ave, Near Dispensary Lane / Opp. PNB Bank, Ranaghat, West Bengal 741201
+          </p>
+
+          <!-- Live GPS Output Card -->
+          <div class="bg-[#FAF6F0] p-4 rounded-2xl border border-[#D4AF37]/40 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#5A1220]">Your GPS Distance &amp; Delivery Zone:</span>
+              <button onclick="detectUserGPS()" class="text-xs font-bold text-[#5A1220] underline">Refresh GPS</button>
+            </div>
+            <p id="gpsDistanceText" class="text-lg font-bold text-[#2A1810]">Click a location below or use live GPS</p>
+            <p id="gpsDeliveryPerk" class="text-xs text-emerald-700 font-medium">Same-day doorstep delivery available across Ranaghat (741201).</p>
+          </div>
+
+          <!-- Instant GPS Simulator Pills -->
+          <div>
+            <p class="text-xs font-semibold text-[#7A6A63] mb-2">Test GPS Distance from Local Landmarks:</p>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="simulateGPS(23.1755, 88.5632, 'Saratpally, Ranaghat')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Saratpally</button>
+              <button onclick="simulateGPS(23.1791, 88.5705, 'Ranaghat Junction Station')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Ranaghat Station</button>
+              <button onclick="simulateGPS(23.1840, 88.5610, 'Siddheswaritala')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Siddheswaritala</button>
+              <button onclick="simulateGPS(23.2411, 88.5345, 'Fulia Handloom Hub')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Fulia</button>
+              <button onclick="simulateGPS(22.5726, 88.3639, 'Kolkata')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Kolkata</button>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-gray-100 flex flex-wrap gap-3">
+            <a href="https://www.facebook.com/RanaghatMadhumitaFabFashion/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-[#1877F2] text-white text-xs font-bold py-2.5 px-4 rounded-xl hover:opacity-95 transition">
+              📘 Official Facebook Page
+            </a>
+            <a href="https://www.google.com/maps/place/Madhumita+Fab+Fashion/@23.1758349,88.5664704,19z" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-[#5A1220] text-[#F5E1A4] text-xs font-bold py-2.5 px-4 rounded-xl hover:bg-[#3D0B15] transition">
+              🗺️ Open in Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Leaflet Map -->
+        <div class="lg:col-span-7">
+          <div id="storeMap" class="w-full h-[430px] rounded-3xl border-2 border-[#D4AF37] shadow-md z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#3D0B15] text-[#FAF6F0] py-8 text-center text-xs border-t border-[#D4AF37]/40 no-print">
+    <p class="serif-font text-xl font-bold text-[#F5E1A4]">Madhumita Fab Fashion • Est. 1980</p>
+    <p class="text-white/70 mt-1">Subhas Avenue, Near Dispensary Lane, Ranaghat, West Bengal 741201</p>
+  </footer>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 hidden no-print"></div>
+  <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#FAF6F0] z-50 shadow-2xl border-l-2 border-[#D4AF37] translate-x-full transition-transform duration-300 flex flex-col no-print">
+    <div class="p-5 bg-[#5A1220] text-[#FAF6F0] flex items-center justify-between border-b border-[#D4AF37]">
+      <div>
+        <h3 class="serif-font text-2xl font-bold">Your Saree Bag</h3>
+        <p class="text-xs text-[#F5E1A4]">Madhumita Fab Fashion • Ranaghat</p>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20">✕</button>
+    </div>
+
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+
+    <div class="p-5 bg-white border-t border-[#D4AF37]/40 space-y-4">
+      <div class="flex gap-2">
+        <input id="cartCouponInput" type="text" placeholder="Enter DIWALI20 or BULK25" class="flex-1 px-3 py-2 rounded-xl border border-[#D4AF37]/50 text-xs uppercase font-bold" />
+        <button onclick="applyCouponFromInput()" class="bg-[#5A1220] text-[#F5E1A4] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#3D0B15]">Apply</button>
+      </div>
+
+      <div class="space-y-1 text-xs">
+        <div class="flex justify-between text-[#5A4A42]"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+        <div class="flex justify-between text-emerald-700 font-semibold"><span>Festive Discount</span><span id="cartDiscount">-₹0</span></div>
+        <div class="flex justify-between text-base font-bold text-[#2A1810] pt-2 border-t"><span>Total Payable</span><span id="cartFinalTotal">₹0</span></div>
+      </div>
+
+      <button onclick="proceedToCheckoutFromCart()" class="w-full bg-[#5A1220] hover:bg-[#3D0B15] text-[#F5E1A4] font-bold py-3.5 rounded-xl text-sm shadow-lg transition flex items-center justify-center gap-2">
+        <span>Order Now</span> →
+      </button>
+    </div>
+  </aside>
+
+  <!-- 3-Step Order & Payment Checkout Modal -->
+  <div id="checkoutModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden overflow-y-auto p-4 sm:p-6">
+    <div class="max-w-4xl mx-auto bg-[#FAF6F0] rounded-3xl border-2 border-[#D4AF37] shadow-2xl overflow-hidden my-4">
+      <div class="bg-[#5A1220] text-[#FAF6F0] px-6 py-5 flex items-center justify-between border-b border-[#D4AF37] no-print">
+        <div>
+          <span class="text-[11px] uppercase tracking-widest text-[#F5E1A4] font-semibold">Madhumita Fab Fashion • Secure Checkout &amp; Instant Receipt</span>
+          <h2 class="serif-font text-2xl sm:text-3xl font-bold">Complete Your Saree Order &amp; Payment</h2>
+        </div>
+        <button onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">✕</button>
+      </div>
+
+      <!-- Checkout Form View -->
+      <div id="checkoutFormView" class="p-6 sm:p-8 grid lg:grid-cols-12 gap-8 no-print">
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Step 1: Customer Details & GPS Address -->
+          <div class="bg-white p-5 rounded-2xl border border-[#D4AF37]/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-sm text-[#5A1220] uppercase tracking-wider">1. Customer Details &amp; GPS Address</h3>
+              <button type="button" onclick="autoFillGPSAddress()" class="text-xs bg-[#D4AF37]/25 text-[#5A1220] font-bold px-3 py-1 rounded-lg border border-[#D4AF37] hover:bg-[#D4AF37]/40">
+                📍 Auto-Fill via GPS
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <label class="cursor-pointer">
+                <input type="radio" name="deliveryMode" value="delivery" checked onchange="updateCheckoutTotals()" class="peer sr-only" />
+                <div class="p-3 rounded-xl border-2 border-gray-200 peer-checked:border-[#5A1220] peer-checked:bg-[#5A1220]/5 text-xs font-bold">
+                  🚚 Doorstep Delivery
+                  <p class="text-[11px] font-normal text-gray-500 mt-0.5">Free in Ranaghat 741201 / ₹2,000+</p>
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="deliveryMode" value="pickup" onchange="updateCheckoutTotals()" class="peer sr-only" />
+                <div class="p-3 rounded-xl border-2 border-gray-200 peer-checked:border-[#5A1220] peer-checked:bg-[#5A1220]/5 text-xs font-bold">
+                  🏪 Showroom Pickup
+                  <p class="text-[11px] font-normal text-gray-500 mt-0.5">Subhas Ave, Opp. PNB Bank, Ranaghat</p>
+                </div>
+              </label>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-3">
+              <input id="custUsername" type="text" placeholder="Username (e.g. @priyanshu) *" required class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+              <input id="custName" type="text" placeholder="Full Name *" required class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+              <input id="custPhone" type="tel" placeholder="10-Digit Mobile *" required class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-3">
+              <input id="custPin" type="text" value="741201" placeholder="PIN Code *" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+              <input id="custCity" type="text" value="Ranaghat, Nadia" placeholder="City / Town *" class="sm:col-span-2 px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+            </div>
+
+            <textarea id="custAddress" rows="2" placeholder="House No., Street, Locality (e.g., Saratpally / Subhas Ave, Ranaghat) *" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]"></textarea>
+          </div>
+
+          <!-- Step 2: Payment Method Selector -->
+          <div class="bg-white p-5 rounded-2xl border border-[#D4AF37]/40 space-y-4">
+            <h3 class="font-bold text-sm text-[#5A1220] uppercase tracking-wider">2. Select Payment Method</h3>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <button type="button" onclick="selectPaymentTab('UPI')" id="tab-UPI" class="pay-tab active p-2.5 rounded-xl border-2 border-[#5A1220] bg-[#5A1220] text-white text-xs font-bold">📱 UPI / QR</button>
+              <button type="button" onclick="selectPaymentTab('CARD')" id="tab-CARD" class="pay-tab p-2.5 rounded-xl border border-gray-200 text-xs font-semibold">💳 Card</button>
+              <button type="button" onclick="selectPaymentTab('NETBANKING')" id="tab-NETBANKING" class="pay-tab p-2.5 rounded-xl border border-gray-200 text-xs font-semibold">🏦 NetBanking</button>
+              <button type="button" onclick="selectPaymentTab('COD')" id="tab-COD" class="pay-tab p-2.5 rounded-xl border border-gray-200 text-xs font-semibold">💵 Cash / COD</button>
+            </div>
+
+            <!-- UPI Panel -->
+            <div id="panel-UPI" class="pay-panel space-y-3 pt-2">
+              <div class="flex flex-col sm:flex-row items-center gap-4 bg-[#FAF6F0] p-4 rounded-xl border border-[#D4AF37]/40">
+                <img id="upiQrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=madhumitafab@pnb%26pn=Madhumita%20Fab%20Fashion" alt="UPI QR Code" class="w-28 h-28 rounded-lg border border-[#D4AF37] bg-white p-1" />
+                <div class="space-y-2 flex-1">
+                  <p class="text-xs font-bold text-[#5A1220]">Scan with GPay, PhonePe, Paytm or BHIM</p>
+                  <p class="text-[11px] text-gray-600">Merchant: <strong>Madhumita Fab Fashion (madhumitafab@pnb)</strong></p>
+                  <div class="flex gap-2">
+                    <input id="upiIdInput" type="text" placeholder="Or enter UPI ID (e.g. name@okaxis)" class="flex-1 px-3 py-1.5 rounded-lg border border-gray-300 text-xs" />
+                    <button type="button" onclick="verifyUpiId()" class="bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold">Verify</button>
+                  </div>
+                  <p id="upiVerifyStatus" class="text-[11px] text-emerald-700 font-semibold hidden">✓ Verified UPI Handle</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Panel -->
+            <div id="panel-CARD" class="pay-panel hidden space-y-3 pt-2">
+              <input type="text" maxlength="19" placeholder="Card Number (XXXX XXXX XXXX XXXX)" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" />
+              <div class="grid grid-cols-2 gap-3">
+                <input type="text" maxlength="5" placeholder="MM/YY" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" />
+                <input type="password" maxlength="3" placeholder="CVV (3 digits)" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" />
+              </div>
+            </div>
+
+            <!-- NetBanking Panel -->
+            <div id="panel-NETBANKING" class="pay-panel hidden space-y-3 pt-2">
+              <p class="text-xs text-gray-600">Choose your preferred bank:</p>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" checked /> State Bank of India (SBI)</label>
+                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" /> Bandhan Bank</label>
+                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" /> Punjab National Bank (PNB)</label>
+                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" /> HDFC / ICICI Bank</label>
+              </div>
+            </div>
+
+            <!-- Cash on Delivery Panel -->
+            <div id="panel-COD" class="pay-panel hidden space-y-2 pt-2">
+              <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
+                💵 <strong>Pay Cash or UPI on Delivery / Showroom Pickup:</strong> Zero advance required for Ranaghat (741201) orders!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Order Summary -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-white p-5 rounded-2xl border border-[#D4AF37]/40 space-y-4">
+            <h3 class="font-bold text-sm text-[#5A1220] uppercase tracking-wider">Order Summary</h3>
+            <div id="checkoutItemsSummary" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
+
+            <label class="flex items-center justify-between p-3 rounded-xl bg-[#FAF6F0] border border-[#D4AF37]/40 cursor-pointer text-xs">
+              <span class="font-semibold text-[#2A1810]">🧵 Add Custom Fall &amp; Pico Finishing</span>
+              <input id="checkoutFallPico" type="checkbox" onchange="updateCheckoutTotals()" class="accent-[#5A1220] w-4 h-4" />
+            </label>
+
+            <div class="space-y-1.5 text-xs pt-2 border-t">
+              <div class="flex justify-between"><span>Items Subtotal</span><span id="chkSubtotal">₹0</span></div>
+              <div class="flex justify-between text-emerald-700 font-semibold"><span>Active Coupon (<span id="chkCouponCode">NONE</span>)</span><span id="chkDiscount">-₹0</span></div>
+              <div class="flex justify-between"><span>Fall &amp; Pico Tailoring (+₹150/saree)</span><span id="chkFallPico">₹0</span></div>
+              <div class="flex justify-between"><span>Delivery Charges</span><span id="chkShipping">FREE</span></div>
+              <div class="flex justify-between text-lg font-bold text-[#5A1220] pt-2 border-t">
+                <span>Grand Total</span>
+                <span id="chkGrandTotal">₹0</span>
+              </div>
+            </div>
+
+            <button type="button" onclick="confirmAndPlaceOrder()" class="w-full bg-[#5A1220] hover:bg-[#3D0B15] text-[#F5E1A4] font-bold py-4 rounded-xl text-sm shadow-xl transition">
+              🛍️ Order Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Confirmed Printable Receipt View -->
+      <div id="checkoutSuccessView" class="hidden p-6 sm:p-8 space-y-5 printable-area">
+        <div class="text-center space-y-2">
+          <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl mx-auto no-print">✓</div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">Official Payment &amp; Order Receipt</span>
+          <h3 class="serif-font text-3xl font-bold text-[#2A1810]">Madhumita Fab Fashion (Est. 1980)</h3>
+          <p class="text-xs text-gray-600">Subhas Avenue, Near Dispensary Lane, Ranaghat - 741201 • GSTIN: 19AABFM8492K1Z5</p>
+        </div>
+
+        <div id="receiptSummaryBox" class="max-w-2xl mx-auto bg-white p-6 rounded-2xl border-2 border-[#D4AF37] text-xs space-y-4"></div>
+
+        <div class="flex flex-wrap justify-center gap-3 pt-2 no-print">
+          <button onclick="window.print()" class="bg-[#5A1220] text-[#F5E1A4] px-5 py-2.5 rounded-xl text-xs font-bold">🖨️ Print / Save PDF Receipt</button>
+          <a href="#database-section" onclick="closeCheckoutModal()" class="bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold">🔒 Access for Admin</a>
+          <button onclick="closeCheckoutModal()" class="bg-gray-200 text-gray-800 px-5 py-2.5 rounded-xl text-xs font-bold">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Festive Diwali 20% OFF Sale Popup Modal -->
+  <div id="saleModal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 no-print">
+    <div class="max-w-md w-full bg-gradient-to-b from-[#5A1220] to-[#2A0810] text-[#FAF6F0] rounded-3xl border-2 border-[#D4AF37] p-6 sm:p-8 relative text-center shadow-2xl">
+      <button onclick="closeSaleModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-white hover:bg-white/20">✕</button>
+      <div class="text-3xl mb-2">🪔</div>
+      <span class="text-[11px] uppercase tracking-widest bg-[#D4AF37] text-[#2A1810] font-bold px-3 py-1 rounded-full">Limited Time Festive Offer</span>
+      <h3 class="serif-font text-3xl sm:text-4xl font-bold mt-3 text-[#F5E1A4]">Diwali &amp; Wedding Sale — Flat 20% OFF</h3>
+      <p class="text-xs text-white/80 mt-2">
+        Celebrate with authentic handloom sarees from <strong>Madhumita Fab Fashion, Subhas Ave, Ranaghat</strong>. Apply your instant coupon at checkout:
+      </p>
+
+      <div class="my-5 space-y-2.5">
+        <div class="bg-black/30 border border-[#D4AF37] rounded-2xl p-3 flex items-center justify-between">
+          <div class="text-left">
+            <p class="text-xs font-bold text-[#F5E1A4]">DIWALI20</p>
+            <p class="text-[11px] text-white/70">Flat 20% OFF on any Saree</p>
+          </div>
+          <button onclick="applySaleCoupon('DIWALI20')" class="bg-[#D4AF37] text-[#2A1810] text-xs font-bold px-3.5 py-2 rounded-xl hover:bg-[#F5E1A4]">Apply 20% OFF</button>
+        </div>
+
+        <div class="bg-black/30 border border-[#D4AF37]/50 rounded-2xl p-3 flex items-center justify-between">
+          <div class="text-left">
+            <p class="text-xs font-bold text-[#F5E1A4]">BULK25</p>
+            <p class="text-[11px] text-white/70">Flat 25% OFF on Orders ₹10,000+</p>
+          </div>
+          <button onclick="applySaleCoupon('BULK25')" class="bg-white/15 text-white text-xs font-bold px-3.5 py-2 rounded-xl hover:bg-white/25">Apply 25% OFF</button>
+        </div>
+      </div>
+
+      <button onclick="closeSaleModal()" class="text-xs text-white/60 underline hover:text-white">Continue Browsing Collection</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 bg-[#2A1810] text-[#F5E1A4] border border-[#D4AF37] px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold hidden no-print"></div>
+
+  <!-- Leaflet JS & External Application Script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
