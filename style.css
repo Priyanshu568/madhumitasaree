@@ -12,33 +12,40 @@
   --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
-  scroll-padding-top: 76px;
+  scroll-padding-top: 72px;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   background: var(--cream);
   color: var(--ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 h1, h2, h3 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   line-height: 1.15;
   letter-spacing: -0.01em;
+  overflow-wrap: break-word;
 }
 
-img {
+img, iframe, svg {
   max-width: 100%;
   display: block;
 }
@@ -56,6 +63,7 @@ button, input, select, textarea {
 }
 
 .wrap {
+  width: 100%;
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 20px;
@@ -169,7 +177,7 @@ button, input, select, textarea {
   font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .link-btn.dark {
@@ -194,18 +202,21 @@ button, input, select, textarea {
    HEADER, ANNOUNCEMENT BAR & MOBILE DRAWER
    ========================================================================== */
 .announce {
+  width: 100%;
   background: var(--md);
   color: var(--gl);
   font-size: 13px;
   text-align: center;
-  padding: 8px 16px;
+  padding: 8px 14px;
+  line-height: 1.45;
 }
 
 header {
+  width: 100%;
   position: sticky;
   top: 0;
   z-index: 25;
-  background: rgba(250, 246, 240, 0.94);
+  background: rgba(250, 246, 240, 0.96);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -215,13 +226,14 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 68px;
-  gap: 12px;
+  gap: 10px;
 }
 
 .brand-group {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .menu-toggle {
@@ -234,13 +246,19 @@ header {
   color: var(--m);
   font-size: 18px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
+  min-width: 0;
+}
+
+.brand > span:last-child {
+  min-width: 0;
 }
 
 .logo {
@@ -260,14 +278,17 @@ header {
   font: 700 24px 'Cormorant Garamond', serif;
   color: var(--m);
   display: block;
-  line-height: 1;
+  line-height: 1.05;
+  white-space: nowrap;
 }
 
 .brand small {
+  display: block;
   font-size: 10.5px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--mute);
+  white-space: nowrap;
 }
 
 .desktop-nav {
@@ -315,11 +336,13 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .eco-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
   padding: 7px 12px;
   border-radius: 999px;
@@ -329,12 +352,19 @@ header {
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .eco-btn.active {
   background: #065F46;
   color: #fff;
   border-color: #065F46;
+}
+
+.bag {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .bag span {
@@ -360,6 +390,7 @@ header {
    HERO SECTION & ZARI GOLD SHIMMER
    ========================================================================== */
 .hero {
+  width: 100%;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--md), var(--m) 60%, #2A0810);
@@ -403,6 +434,10 @@ body.eco-lite .zari-dot,
   grid-template-columns: 1.15fr 0.85fr;
   gap: 44px;
   align-items: center;
+}
+
+.hero-copy {
+  min-width: 0;
 }
 
 .hero h1 {
@@ -455,7 +490,7 @@ body.eco-lite .gold-shimmer {
 
 .gps-hero-box span {
   font-size: 12px;
-  opacity: 0.8;
+  opacity: 0.82;
 }
 
 .cta {
@@ -475,6 +510,7 @@ body.eco-lite .gold-shimmer {
 }
 
 .hero-figure {
+  min-width: 0;
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -538,6 +574,7 @@ body.eco-lite .gold-shimmer {
    TRUST BAR, CATALOG & AUTOMATIC OUT-OF-STOCK CARDS
    ========================================================================== */
 .trust {
+  width: 100%;
   background: #fff;
   border-bottom: 1px solid var(--line);
 }
@@ -552,6 +589,7 @@ body.eco-lite .gold-shimmer {
 .trust div {
   font-size: 13px;
   color: var(--mute);
+  min-width: 0;
 }
 
 .trust b {
@@ -561,6 +599,7 @@ body.eco-lite .gold-shimmer {
 }
 
 section {
+  width: 100%;
   padding: 68px 0;
 }
 
@@ -610,6 +649,7 @@ input:focus, select:focus, textarea:focus {
   display: flex;
   gap: 8px;
   overflow-x: auto;
+  max-width: 100%;
   padding-bottom: 6px;
   margin-bottom: 24px;
   scrollbar-width: none;
@@ -629,6 +669,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 13px;
   font-weight: 600;
   transition: 0.2s;
+  flex-shrink: 0;
 }
 
 .pills button.on {
@@ -644,6 +685,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .card {
+  min-width: 0;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--r);
@@ -738,6 +780,7 @@ input:focus, select:focus, textarea:focus {
   border-radius: 99px;
   background: #E6F4EA;
   color: #1B6B3A;
+  white-space: nowrap;
 }
 
 .stock-pill.low {
@@ -864,6 +907,7 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid rgba(245, 225, 164, 0.35);
   border-radius: 16px;
   padding: 16px 20px;
+  min-width: 0;
 }
 
 .kpi-card span {
@@ -884,6 +928,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 13px;
   display: block;
   margin-top: 8px;
+  overflow-wrap: anywhere;
 }
 
 .table-wrap {
@@ -994,6 +1039,10 @@ input:focus, select:focus, textarea:focus {
   align-items: stretch;
 }
 
+.visit-grid > * {
+  min-width: 0;
+}
+
 .visit h2 {
   font-size: clamp(30px, 4vw, 42px);
   margin: 6px 0 16px;
@@ -1041,6 +1090,7 @@ input:focus, select:focus, textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   font-size: 13px;
   color: var(--m);
 }
@@ -1087,9 +1137,10 @@ iframe {
 }
 
 footer {
+  width: 100%;
   background: var(--md);
   color: var(--cream);
-  padding: 44px 0 84px;
+  padding: 44px 0 88px;
   font-size: 14px;
 }
 
@@ -1153,7 +1204,7 @@ footer small {
 
 .drawer {
   right: 0;
-  width: min(450px, 100%);
+  width: min(450px, 100vw);
   transform: translateX(100%);
 }
 
@@ -1163,7 +1214,7 @@ footer small {
 
 .mobile-drawer {
   left: 0;
-  width: min(300px, 85%);
+  width: min(300px, 85vw);
   transform: translateX(-100%);
 }
 
@@ -1201,13 +1252,13 @@ footer small {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 22px;
+  padding: 16px 20px;
   background: var(--m);
   color: #fff;
 }
 
 .dh h3 {
-  font-size: 25px;
+  font-size: 24px;
 }
 
 .dh button {
@@ -1218,12 +1269,13 @@ footer small {
   height: 34px;
   border-radius: 50%;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .db {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 22px;
+  padding: 18px 20px;
 }
 
 .item {
@@ -1314,7 +1366,7 @@ footer small {
   z-index: 55;
   display: none;
   overflow-y: auto;
-  padding: 20px;
+  padding: 16px;
 }
 
 .modal-backdrop.on {
@@ -1346,7 +1398,7 @@ footer small {
 
 .modal-sm {
   max-width: 440px;
-  padding: 28px;
+  padding: 26px;
 }
 
 .sale-card {
@@ -1361,7 +1413,7 @@ footer small {
 }
 
 .sale-card h3 {
-  font-size: 32px;
+  font-size: 30px;
   color: var(--gl);
   margin: 6px 0 8px;
 }
@@ -1376,7 +1428,8 @@ footer small {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  gap: 10px;
+  padding: 12px 14px;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(245, 225, 164, 0.45);
@@ -1423,20 +1476,21 @@ footer small {
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
   gap: 20px;
-  padding: 22px;
+  padding: 20px;
 }
 
 .checkout-left, .checkout-right {
   display: grid;
   gap: 16px;
   align-content: start;
+  min-width: 0;
 }
 
 .panel-box {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 18px;
+  padding: 16px;
   display: grid;
   gap: 12px;
 }
@@ -1582,6 +1636,7 @@ footer small {
   font-size: 12.5px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 6px;
+  gap: 8px;
 }
 
 .chk-totals {
@@ -1607,7 +1662,7 @@ footer small {
 
 /* Receipt View */
 .receipt-view {
-  padding: 28px;
+  padding: 24px 20px;
 }
 
 .receipt-header {
@@ -1626,7 +1681,7 @@ footer small {
 }
 
 .receipt-header h3 {
-  font-size: 30px;
+  font-size: 28px;
   margin: 6px 0 4px;
 }
 
@@ -1639,7 +1694,7 @@ footer small {
   background: #fff;
   border: 1.5px solid var(--g);
   border-radius: 16px;
-  padding: 20px;
+  padding: 18px;
   font-size: 13px;
   display: grid;
   gap: 14px;
@@ -1763,9 +1818,18 @@ footer small {
 }
 
 /* ==========================================================================
-   MOBILE & TABLET RESPONSIVENESS
+   MOBILE & TABLET RESPONSIVENESS (FIXES RIGHT WHITE BEZEL & HEADER FIT)
    ========================================================================== */
 @media (max-width: 900px) {
+  .wrap {
+    padding: 0 14px;
+  }
+
+  .announce {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
   .desktop-nav {
     display: none;
   }
@@ -1773,26 +1837,110 @@ footer small {
   .menu-toggle {
     display: grid;
     place-items: center;
+    width: 36px;
+    height: 36px;
+  }
+
+  .bar {
+    height: 62px;
+    gap: 8px;
+  }
+
+  .brand-group {
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .brand b {
+    font-size: 20px;
+  }
+
+  .brand small {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  #ecoLabel {
+    display: none;
+  }
+
+  .eco-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    font-size: 15px;
+  }
+
+  .bag {
+    padding: 8px 13px;
+    font-size: 13px;
   }
 
   .hero {
-    padding: 44px 0 54px;
+    padding: 34px 0 44px;
   }
 
   .hero-grid, .visit-grid, .checkout-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 8.6vw, 44px);
+    margin: 10px 0 12px;
+  }
+
+  .hero p {
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  .gps-hero-box {
+    margin-top: 16px;
+    padding: 12px 14px;
+  }
+
+  .cta {
+    margin-top: 18px;
+    gap: 10px;
+  }
+
+  .cta .btn {
+    flex: 1 1 auto;
+    padding: 11px 16px;
+    font-size: 13px;
   }
 
   .hero-figure {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
+    max-height: 320px;
   }
 
-  .trust-grid, .kpi-grid {
+  .trust-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 14px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
   }
 
   section {
-    padding: 50px 0;
+    padding: 46px 0;
   }
 
   .tools, .tools input {
@@ -1816,7 +1964,7 @@ footer small {
   }
 
   iframe {
-    min-height: 290px;
+    min-height: 280px;
   }
 
   .mbar {
@@ -1827,9 +1975,10 @@ footer small {
     bottom: 0;
     left: 0;
     right: 0;
+    width: 100%;
     z-index: 30;
-    padding: 9px 12px;
-    background: rgba(250, 246, 240, 0.96);
+    padding: 8px 12px;
+    background: rgba(250, 246, 240, 0.97);
     border-top: 1px solid var(--line);
   }
 
@@ -1839,7 +1988,7 @@ footer small {
   }
 
   #toast {
-    bottom: 76px;
+    bottom: 74px;
   }
 
   input, select, textarea {
