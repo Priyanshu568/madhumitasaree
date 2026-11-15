@@ -1,527 +1,581 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Madhumita Fab Fashion | Heritage Sarees of Ranaghat (Est. 1980)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Madhumita Fab Fashion | Handloom &amp; Silk Sarees, Ranaghat (Est. 1980)</title>
+  <meta name="description" content="Fulia tant, Dhakai jamdani, Baluchari, Banarasi and Kanjeevaram sarees from Madhumita Fab Fashion, Subhas Avenue, Ranaghat. Serving families since 1980." />
+  <meta name="theme-color" content="#5A1220" />
+  <meta property="og:title" content="Madhumita Fab Fashion | Sarees in Ranaghat since 1980" />
+  <meta property="og:description" content="Handloom, silk and bridal sarees. Order online, via WhatsApp, or visit our Ranaghat showroom." />
+  <meta property="og:type" content="website" />
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Heritage Emblem Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%235A1220'/%3E%3Ctext x='32' y='43' font-size='34' text-anchor='middle' fill='%23F5E1A4' font-family='Georgia'%3EM%3C/text%3E%3C/svg%3E" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Leaflet CSS for Interactive GPS Store Map -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Local Business Structured Data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": "Madhumita Fab Fashion",
+    "foundingDate": "1980",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Subhas Avenue, Opp. PNB Bank",
+      "addressLocality": "Ranaghat",
+      "addressRegion": "West Bengal",
+      "postalCode": "741201",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 23.1758349,
+      "longitude": 88.5664704
+    },
+    "openingHours": "Tu-Su 10:00-21:00"
+  }
+  </script>
 
   <!-- External Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="antialiased selection:bg-[#5A1220] selection:text-[#FAF6F0]">
+<body>
 
-  <!-- Top Festive Marquee Announcement Bar -->
-  <div class="bg-[#3D0B15] text-[#FAF6F0] text-xs py-2.5 px-4 border-b border-[#D4AF37]/30 relative z-40 no-print">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <span class="inline-block w-2 h-2 rounded-full bg-[#D4AF37] animate-ping"></span>
-        <span class="font-medium tracking-wide">
-          🪔 <strong>DIWALI &amp; WEDDING UTSAV:</strong> Flat <span class="text-[#F5E1A4] font-bold">20% OFF</span> on all Sarees (Code: <code class="bg-[#5A1220] px-1.5 py-0.5 rounded border border-[#D4AF37]/40 text-[#F5E1A4]">DIWALI20</code>) | <span class="text-[#F5E1A4] font-bold">25% OFF</span> Bulk Orders ₹10,000+ (<code class="bg-[#5A1220] px-1.5 py-0.5 rounded border border-[#D4AF37]/40 text-[#F5E1A4]">BULK25</code>)
-        </span>
-      </div>
-      <div class="flex items-center gap-4 text-[11px]">
-        <button onclick="openSaleModal()" class="text-[#F5E1A4] underline hover:text-white font-semibold">Claim Festive Coupon</button>
-        <span class="hidden md:inline text-white/40">|</span>
-        <a href="#gps-section" class="hidden md:inline-flex items-center gap-1 text-[#FAF6F0]/90 hover:text-[#F5E1A4]">
-          📍 Subhas Ave, Ranaghat - 741201
-        </a>
-      </div>
-    </div>
+  <!-- Top Announcement Bar -->
+  <div class="announce no-print">
+    <span id="announceText"></span>
+    <button type="button" class="link-btn" onclick="openSaleModal()">Claim 20% Offer</button>
   </div>
 
   <!-- Sticky Navigation Header -->
-  <header class="sticky top-0 z-30 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-[#D4AF37]/25 shadow-sm no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-      <!-- Brand Identity -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-full bg-[#5A1220] border-2 border-[#D4AF37] flex items-center justify-center text-[#F5E1A4] serif-font font-bold text-2xl shadow-md">
-          M
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="serif-font text-2xl sm:text-3xl font-bold tracking-tight text-[#5A1220]">Madhumita</span>
-            <span class="text-[10px] uppercase tracking-widest bg-[#5A1220] text-[#F5E1A4] px-2 py-0.5 rounded font-semibold">Fab Fashion</span>
-          </div>
-          <p class="text-[11px] text-[#7A6A63] tracking-wider uppercase font-medium">Est. 1980 • Subhas Ave, Ranaghat</p>
-        </div>
-      </a>
+  <header class="no-print">
+    <div class="wrap bar">
+      <div class="brand-group">
+        <button type="button" class="menu-toggle" onclick="toggleMobileMenu(true)" aria-label="Open menu">&#9776;</button>
+        <a class="brand" href="#top">
+          <span class="logo">M</span>
+          <span>
+            <b>Madhumita</b>
+            <small>Fab Fashion &bull; Est. 1980</small>
+          </span>
+        </a>
+      </div>
 
-      <!-- Center Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-5 text-sm font-medium text-[#2A1810]">
-        <a href="#catalog-section" class="hover:text-[#5A1220] transition">Saree Collection</a>
-        <a href="#gps-section" class="hover:text-[#5A1220] transition flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-600"></span> GPS Locator
-        </a>
-        <a href="#database-section" class="hover:text-[#5A1220] transition flex items-center gap-1.5 font-semibold text-[#5A1220]">
-          🔒 Access for Admin
-        </a>
-        <button onclick="openSaleModal()" class="text-[#5A1220] font-semibold flex items-center gap-1 bg-[#D4AF37]/20 px-3 py-1.5 rounded-full border border-[#D4AF37]/50 hover:bg-[#D4AF37]/30 transition">
-          🪔 Diwali 20% Sale
-        </button>
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="#collection">Collection</a>
+        <a href="#about">Our Story</a>
+        <a href="#visit">Visit Us</a>
+        <button type="button" class="nav-pill-sale" onclick="openSaleModal()">&#129684; 20% Sale</button>
+        <a href="#admin-panel" id="navAdminLink">&#128274; Access for Admin</a>
       </nav>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-2.5">
-        <button onclick="openCheckoutModal()" class="px-3.5 py-2 rounded-full bg-[#D4AF37]/20 text-[#5A1220] border border-[#D4AF37] text-xs font-bold hover:bg-[#D4AF37]/35 transition flex items-center gap-1.5">
-          💳 Order &amp; Payment
+      <div class="header-actions">
+        <button type="button" class="eco-btn" id="ecoBtn" onclick="toggleEcoMode()" title="Battery &amp; Data Saver Mode">
+          <span>&#127807;</span>
+          <span id="ecoLabel">Eco: Auto</span>
         </button>
-
-        <button onclick="toggleCartDrawer(true)" class="relative flex items-center gap-2 bg-[#5A1220] text-[#FAF6F0] px-4 py-2.5 rounded-full text-xs font-semibold hover:bg-[#3D0B15] transition shadow-md">
-          <span>🛍️ Bag</span>
-          <span id="cartCountBadge" class="bg-[#D4AF37] text-[#2A1810] font-bold px-2 py-0.5 rounded-full text-[11px]">0</span>
+        <button type="button" class="btn bag" onclick="toggleDrawer(true)" aria-label="Open shopping bag">
+          Bag <span id="bagCount">0</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-[#3D0B15] via-[#5A1220] to-[#2A0810] text-[#FAF6F0] py-14 lg:py-20 border-b-2 border-[#D4AF37] no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex flex-wrap items-center gap-2 bg-white/10 backdrop-blur-sm border border-[#D4AF37]/40 rounded-full px-4 py-1.5 text-xs">
-            <span class="text-[#F5E1A4] font-semibold">★ 4.4 Rated in Ranaghat</span>
-            <span class="text-white/30">•</span>
-            <span>46 Years of Handloom Trust (Since 1980)</span>
-          </div>
-
-          <h1 class="serif-font text-4xl sm:text-6xl font-bold leading-[1.1] tracking-tight">
-            Timeless Bengal Weaves from <span class="gold-shimmer">Madhumita Fab Fashion</span>
-          </h1>
-
-          <p class="text-base sm:text-lg text-[#FAF6F0]/85 max-w-2xl leading-relaxed">
-            Located on Subhas Avenue, Ranaghat. Explore authentic Fulia Tant, Resham Dhakai Jamdani, Pure Silk Baluchari, Bridal Banarasi, and Kanjeevaram sarees—complete with live GPS delivery tracking, direct UPI QR checkout, and instant printable receipts.
-          </p>
-
-          <!-- Live GPS Distance Banner inside Hero -->
-          <div class="bg-black/25 border border-[#D4AF37]/35 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-lg">
-                📍
-              </div>
-              <div>
-                <p id="heroGpsStatus" class="text-xs font-semibold text-[#F5E1A4]">Showroom: Subhas Ave, Ranaghat, West Bengal 741201</p>
-                <p id="heroGpsSub" class="text-[11px] text-white/75">Click "Detect My GPS" to check live distance &amp; same-day Ranaghat delivery eligibility.</p>
-              </div>
-            </div>
-            <button onclick="detectUserGPS()" class="shrink-0 bg-[#D4AF37] text-[#2A1810] hover:bg-[#F5E1A4] font-bold text-xs px-4 py-2.5 rounded-xl transition shadow">
-              📡 Detect My GPS
-            </button>
-          </div>
-
-          <!-- Primary CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-4 pt-2">
-            <a href="#catalog-section" class="bg-[#F5E1A4] text-[#3D0B15] hover:bg-white font-bold px-7 py-3.5 rounded-full text-sm transition shadow-lg">
-              Explore Saree Catalog →
-            </a>
-            <a href="#database-section" class="bg-white/10 hover:bg-white/20 text-white border border-[#D4AF37]/60 font-semibold px-6 py-3.5 rounded-full text-sm transition">
-              🔒 Access for Admin
-            </a>
-          </div>
-        </div>
-
-        <!-- Featured Saree Showcase Card -->
-        <div class="lg:col-span-5">
-          <div class="relative rounded-3xl overflow-hidden border-2 border-[#D4AF37] shadow-2xl bg-[#2A0810] group">
-            <img
-              src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85"
-              onerror="handleImgError(this, 'Bridal Katan Banarasi')"
-              alt="Madhumita Royal Bridal Banarasi"
-              class="w-full h-[420px] object-cover object-top group-hover:scale-105 transition duration-700"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-            <div class="absolute top-4 left-4 bg-[#5A1220] text-[#F5E1A4] border border-[#D4AF37] text-xs font-bold px-3 py-1 rounded-full">
-              🪔 DIWALI SPOTLIGHT • 20% OFF
-            </div>
-            <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
-              <div>
-                <p class="text-xs uppercase tracking-widest text-[#F5E1A4]">Showroom Bestseller</p>
-                <h3 class="serif-font text-2xl font-bold text-white">Subhas Ave Bridal Katan Banarasi</h3>
-                <p class="text-sm text-white/80 mt-0.5">₹6,850 <span class="line-through text-white/50 text-xs ml-1">₹8,500</span></p>
-              </div>
-              <button onclick="buyNowDirect(1)" class="bg-[#D4AF37] hover:bg-[#F5E1A4] text-[#2A1810] font-bold text-xs px-4 py-2.5 rounded-xl shadow">
-                ⚡ Buy Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Mobile Slide-Out Navigation Menu -->
+  <div class="shade no-print" id="mobileMenuShade" onclick="toggleMobileMenu(false)"></div>
+  <aside class="mobile-drawer no-print" id="mobileMenuDrawer" aria-label="Mobile Menu">
+    <div class="dh">
+      <h3>Madhumita</h3>
+      <button type="button" onclick="toggleMobileMenu(false)" aria-label="Close menu">&#10005;</button>
     </div>
-  </section>
-
-  <!-- Saree Catalog Section -->
-  <section id="catalog-section" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-[#5A1220]">Direct from Nadia Weavers &amp; Ranaghat Showroom</span>
-        <h2 class="serif-font text-3xl sm:text-4xl font-bold text-[#2A1810] mt-1">Curated Saree Collection</h2>
-      </div>
-
-      <!-- Search & Sort Controls -->
-      <div class="flex flex-wrap items-center gap-3">
-        <input id="searchInput" oninput="renderCatalog()" type="text" placeholder="Search Jamdani, Tant, Banarasi..." class="px-4 py-2 rounded-full border border-[#D4AF37]/50 bg-white text-sm focus:outline-none focus:border-[#5A1220]" />
-        <select id="sortSelect" onchange="renderCatalog()" class="px-4 py-2 rounded-full border border-[#D4AF37]/50 bg-white text-sm focus:outline-none focus:border-[#5A1220]">
-          <option value="featured">Sort: Featured Bestsellers</option>
-          <option value="low-high">Price: Low to High</option>
-          <option value="high-low">Price: High to Low</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Category Filter Pills -->
-    <div id="categoryPills" class="flex items-center gap-2 overflow-x-auto pb-4 mb-6">
-      <button onclick="setCategory('All')" data-cat="All" class="cat-pill active px-4 py-2 rounded-full text-xs font-bold bg-[#5A1220] text-[#FAF6F0] transition shrink-0">All Weaves (8)</button>
-      <button onclick="setCategory('Tant & Handloom')" data-cat="Tant & Handloom" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Fulia &amp; Shantipur Tant</button>
-      <button onclick="setCategory('Dhakai Jamdani')" data-cat="Dhakai Jamdani" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Dhakai Jamdani</button>
-      <button onclick="setCategory('Bridal Banarasi')" data-cat="Bridal Banarasi" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Bridal Banarasi</button>
-      <button onclick="setCategory('Baluchari & Silk')" data-cat="Baluchari & Silk" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Bishnupur Baluchari &amp; Silk</button>
-      <button onclick="setCategory('Party & Festive')" data-cat="Party & Festive" class="cat-pill px-4 py-2 rounded-full text-xs font-semibold bg-white border border-[#D4AF37]/40 text-[#2A1810] hover:border-[#5A1220] transition shrink-0">Organza &amp; Partywear</button>
-    </div>
-
-    <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-  </section>
-
-  <!-- Admin-Only Order & Stock Dashboard (Hidden from Public View) -->
-  <section id="database-section" class="hidden py-14 bg-[#2A0810] text-[#FAF6F0] border-y-2 border-[#D4AF37] no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-widest text-[#F5E1A4]">🔐 Showroom Management • Restricted Admin View</span>
-          <h2 class="serif-font text-3xl sm:text-4xl font-bold text-white mt-1">Showroom Admin Order Dashboard</h2>
-          <p class="text-xs text-white/75 mt-1 max-w-2xl">
-            Manage verified customer orders, contact numbers, delivery addresses, live saree stock quantities, and printable GST receipts.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="downloadMongoJson()" class="px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition">
-            Export Ledger
-          </button>
-        </div>
-      </div>
-
-      <!-- Visual Orders Table -->
-      <div id="dbPanel-records" class="db-panel bg-white text-[#2A1810] rounded-3xl overflow-hidden border-2 border-[#D4AF37] shadow-xl">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-[#5A1220] text-[#F5E1A4] uppercase tracking-wider text-[11px]">
-                <th class="py-3.5 px-4">Order ID &amp; Date</th>
-                <th class="py-3.5 px-4">Customer Details &amp; Mobile</th>
-                <th class="py-3.5 px-4">Purchased Saree(s)</th>
-                <th class="py-3.5 px-4">Payment Mode &amp; Ref</th>
-                <th class="py-3.5 px-4">Total Paid</th>
-                <th class="py-3.5 px-4 text-right">Receipt Document</th>
-              </tr>
-            </thead>
-            <tbody id="dbRecordsTableBody" class="divide-y divide-gray-200"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Live GPS Store Locator & Ranaghat Delivery Hub -->
-  <section id="gps-section" class="py-14 bg-[#F3ECE1] border-b border-[#D4AF37]/30 no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-8 items-start">
-        <div class="lg:col-span-5 space-y-5 bg-white p-6 rounded-3xl border border-[#D4AF37]/40 shadow-sm">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#5A1220]">📍 Verified Flagship Showroom</span>
-            <span id="storeOpenBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Checking Hours...</span>
-          </div>
-
-          <h3 class="serif-font text-3xl font-bold text-[#2A1810]">Madhumita Fab Fashion</h3>
-          <p class="text-sm text-[#5A4A42] leading-relaxed">
-            <strong>Address:</strong> Subhas Ave, Near Dispensary Lane / Opp. PNB Bank, Ranaghat, West Bengal 741201
-          </p>
-
-          <!-- Live GPS Output Card -->
-          <div class="bg-[#FAF6F0] p-4 rounded-2xl border border-[#D4AF37]/40 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-[#5A1220]">Your GPS Distance &amp; Delivery Zone:</span>
-              <button onclick="detectUserGPS()" class="text-xs font-bold text-[#5A1220] underline">Refresh GPS</button>
-            </div>
-            <p id="gpsDistanceText" class="text-lg font-bold text-[#2A1810]">Click a location below or use live GPS</p>
-            <p id="gpsDeliveryPerk" class="text-xs text-emerald-700 font-medium">Same-day doorstep delivery available across Ranaghat (741201).</p>
-          </div>
-
-          <!-- Instant GPS Simulator Pills -->
-          <div>
-            <p class="text-xs font-semibold text-[#7A6A63] mb-2">Test GPS Distance from Local Landmarks:</p>
-            <div class="flex flex-wrap gap-1.5">
-              <button onclick="simulateGPS(23.1755, 88.5632, 'Saratpally, Ranaghat')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Saratpally</button>
-              <button onclick="simulateGPS(23.1791, 88.5705, 'Ranaghat Junction Station')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Ranaghat Station</button>
-              <button onclick="simulateGPS(23.1840, 88.5610, 'Siddheswaritala')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Siddheswaritala</button>
-              <button onclick="simulateGPS(23.2411, 88.5345, 'Fulia Handloom Hub')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Fulia</button>
-              <button onclick="simulateGPS(22.5726, 88.3639, 'Kolkata')" class="px-2.5 py-1 rounded-lg bg-[#FAF6F0] hover:bg-[#5A1220] hover:text-white text-xs border border-[#D4AF37]/40 transition">Kolkata</button>
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-gray-100 flex flex-wrap gap-3">
-            <a href="https://www.facebook.com/RanaghatMadhumitaFabFashion/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-[#1877F2] text-white text-xs font-bold py-2.5 px-4 rounded-xl hover:opacity-95 transition">
-              📘 Official Facebook Page
-            </a>
-            <a href="https://www.google.com/maps/place/Madhumita+Fab+Fashion/@23.1758349,88.5664704,19z" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-[#5A1220] text-[#F5E1A4] text-xs font-bold py-2.5 px-4 rounded-xl hover:bg-[#3D0B15] transition">
-              🗺️ Open in Google Maps
-            </a>
-          </div>
-        </div>
-
-        <!-- Interactive Leaflet Map -->
-        <div class="lg:col-span-7">
-          <div id="storeMap" class="w-full h-[430px] rounded-3xl border-2 border-[#D4AF37] shadow-md z-10"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-[#3D0B15] text-[#FAF6F0] py-8 text-center text-xs border-t border-[#D4AF37]/40 no-print">
-    <p class="serif-font text-xl font-bold text-[#F5E1A4]">Madhumita Fab Fashion • Est. 1980</p>
-    <p class="text-white/70 mt-1">Subhas Avenue, Near Dispensary Lane, Ranaghat, West Bengal 741201</p>
-  </footer>
-
-  <!-- Slide-Over Shopping Cart Drawer -->
-  <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 hidden no-print"></div>
-  <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#FAF6F0] z-50 shadow-2xl border-l-2 border-[#D4AF37] translate-x-full transition-transform duration-300 flex flex-col no-print">
-    <div class="p-5 bg-[#5A1220] text-[#FAF6F0] flex items-center justify-between border-b border-[#D4AF37]">
-      <div>
-        <h3 class="serif-font text-2xl font-bold">Your Saree Bag</h3>
-        <p class="text-xs text-[#F5E1A4]">Madhumita Fab Fashion • Ranaghat</p>
-      </div>
-      <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20">✕</button>
-    </div>
-
-    <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
-
-    <div class="p-5 bg-white border-t border-[#D4AF37]/40 space-y-4">
-      <div class="flex gap-2">
-        <input id="cartCouponInput" type="text" placeholder="Enter DIWALI20 or BULK25" class="flex-1 px-3 py-2 rounded-xl border border-[#D4AF37]/50 text-xs uppercase font-bold" />
-        <button onclick="applyCouponFromInput()" class="bg-[#5A1220] text-[#F5E1A4] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#3D0B15]">Apply</button>
-      </div>
-
-      <div class="space-y-1 text-xs">
-        <div class="flex justify-between text-[#5A4A42]"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
-        <div class="flex justify-between text-emerald-700 font-semibold"><span>Festive Discount</span><span id="cartDiscount">-₹0</span></div>
-        <div class="flex justify-between text-base font-bold text-[#2A1810] pt-2 border-t"><span>Total Payable</span><span id="cartFinalTotal">₹0</span></div>
-      </div>
-
-      <button onclick="proceedToCheckoutFromCart()" class="w-full bg-[#5A1220] hover:bg-[#3D0B15] text-[#F5E1A4] font-bold py-3.5 rounded-xl text-sm shadow-lg transition flex items-center justify-center gap-2">
-        <span>Order Now</span> →
+    <div class="mobile-links">
+      <a href="#collection" onclick="toggleMobileMenu(false)">Saree Collection</a>
+      <a href="#about" onclick="toggleMobileMenu(false)">Our Story (Est. 1980)</a>
+      <a href="#visit" onclick="toggleMobileMenu(false)">Visit Showroom &amp; GPS</a>
+      <button type="button" onclick="toggleMobileMenu(false); openSaleModal();">&#129684; Diwali 20% Sale Coupons</button>
+      <button type="button" onclick="toggleMobileMenu(false); openCheckoutModal();">&#128179; Order &amp; Payment</button>
+      <a href="#admin-panel" id="mobileDrawerAdminLink" onclick="toggleMobileMenu(false)">&#128274; Access for Admin</a>
+      <button type="button" class="eco-row" onclick="toggleEcoMode()">
+        <span>&#127807; Eco Battery Saver</span>
+        <strong id="mobileEcoText">AUTO</strong>
       </button>
     </div>
   </aside>
 
-  <!-- 3-Step Order & Payment Checkout Modal -->
-  <div id="checkoutModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden overflow-y-auto p-4 sm:p-6">
-    <div class="max-w-4xl mx-auto bg-[#FAF6F0] rounded-3xl border-2 border-[#D4AF37] shadow-2xl overflow-hidden my-4">
-      <div class="bg-[#5A1220] text-[#FAF6F0] px-6 py-5 flex items-center justify-between border-b border-[#D4AF37] no-print">
-        <div>
-          <span class="text-[11px] uppercase tracking-widest text-[#F5E1A4] font-semibold">Madhumita Fab Fashion • Secure Checkout &amp; Instant Receipt</span>
-          <h2 class="serif-font text-2xl sm:text-3xl font-bold">Complete Your Saree Order &amp; Payment</h2>
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero no-print">
+      <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow gold-text hero-anim">Ranaghat, Nadia &bull; Since 1980</span>
+          <h1 class="hero-anim delay-1">Bengal&rsquo;s finest weaves, <em class="gold-shimmer">chosen with care.</em></h1>
+          <p class="hero-anim delay-2">Fulia tant, Dhakai jamdani, Baluchari, Banarasi and Kanjeevaram sarees from a family showroom on Subhas Avenue that has dressed Ranaghat for over four decades.</p>
+
+          <!-- Live GPS Distance Strip -->
+          <div class="gps-hero-box hero-anim delay-3">
+            <div>
+              <b id="heroGpsHeadline">&#128205; Subhas Avenue, Opp. PNB Bank, Ranaghat 741201</b>
+              <span id="heroGpsSub">Check live GPS distance &amp; same-day Ranaghat delivery eligibility.</span>
+            </div>
+            <button type="button" class="btn gold sm-btn" onclick="detectUserGPS()">&#128225; Detect GPS</button>
+          </div>
+
+          <div class="cta hero-anim delay-4">
+            <a class="btn gold btn-sheen" href="#collection">Shop the collection</a>
+            <a class="btn ghost" id="heroWa" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </div>
         </div>
-        <button onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">✕</button>
+
+        <figure class="hero-figure hero-anim delay-2" id="heroShowcase">
+          <img id="heroImg" alt="Bridal Red Katan Banarasi saree" fetchpriority="high" />
+          <figcaption>
+            <span>Showroom Bestseller</span>
+            <b id="heroCardTitle">Bridal Red Katan Banarasi</b>
+            <button type="button" class="btn gold sm-btn" onclick="buyNowDirect(1)">&#9889; Buy Now</button>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4-Column Trust Strip -->
+    <div class="trust no-print">
+      <div class="wrap trust-grid">
+        <div><b>Serving since 1980</b>Four decades of trust</div>
+        <div><b>Handloom &amp; silk</b>Sourced from weaving clusters</div>
+        <div><b>Fall &amp; pico on request</b>Ready to wear</div>
+        <div><b>Visit or order online</b>Pickup, delivery or WhatsApp</div>
+      </div>
+    </div>
+
+    <!-- Saree Collection Catalog -->
+    <section id="collection" class="no-print">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <span class="eyebrow">The Collection</span>
+            <h2>Sarees for every occasion</h2>
+          </div>
+          <div class="tools">
+            <input id="q" type="search" placeholder="Search jamdani, tant, silk&hellip;" aria-label="Search sarees" />
+            <select id="sort" aria-label="Sort sarees">
+              <option value="f">Featured</option>
+              <option value="l">Price: low to high</option>
+              <option value="h">Price: high to low</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pills" id="pills"></div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <!-- Heritage Story Section -->
+    <section id="about" class="story-section no-print">
+      <div class="wrap story-box reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2>A Ranaghat name, forty-six years running</h2>
+        <p>Madhumita Fab Fashion began in 1980 on Subhas Avenue with a simple promise: honest fabric, fair prices and sarees that look as good in the wardrobe as they do on the shelf. Today we bring together everyday cotton tants, fine jamdanis and wedding silks, so one visit can dress the whole family for the season.</p>
+      </div>
+    </section>
+
+    <!-- Admin-Only Order & Inventory Dashboard (Strictly Hidden from Public View) -->
+    <section id="admin-panel" class="admin-section hidden no-print">
+      <div class="wrap">
+        <div class="admin-head">
+          <div>
+            <span class="eyebrow gold-text">&#128272; Showroom Management</span>
+            <h2>Admin Order &amp; Inventory Dashboard</h2>
+            <p class="admin-sub">Restricted showroom view for managing customer orders, live saree stock, and printable GST receipts.</p>
+          </div>
+          <div class="admin-actions">
+            <button type="button" class="btn gold sm-btn" onclick="openAdminSettingsModal()">&#9881;&#65039; Security &amp; Email Settings</button>
+            <button type="button" class="btn danger sm-btn" onclick="logoutAdmin()">&#128274; Lock &amp; Logout Admin</button>
+          </div>
+        </div>
+
+        <!-- KPI Summary -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span>Total Orders</span>
+            <b id="kpiOrders">0</b>
+          </div>
+          <div class="kpi-card">
+            <span>Total Revenue</span>
+            <b id="kpiRevenue">&#8377;0</b>
+          </div>
+          <div class="kpi-card">
+            <span>Connected Seller Email</span>
+            <strong id="kpiEmail">Linked</strong>
+          </div>
+        </div>
+
+        <!-- Customer Orders Table -->
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID &amp; Date</th>
+                <th>Customer &amp; Mobile</th>
+                <th>Purchased Sarees</th>
+                <th>Payment &amp; Ref</th>
+                <th>Total</th>
+                <th>Receipt</th>
+              </tr>
+            </thead>
+            <tbody id="adminOrdersBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Live Saree Stock & Restock Manager -->
+        <div class="stock-manager">
+          <div class="stock-head">
+            <h3>&#128230; Live Saree Stock &amp; Restock Manager</h3>
+            <p>Stock automatically deducts on order completion. Items at 0 stock automatically display as &ldquo;Sold out&rdquo; in the storefront.</p>
+          </div>
+          <div class="stock-grid" id="adminStockGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit Showroom & Interactive GPS Locator -->
+    <section class="visit no-print" id="visit">
+      <div class="wrap visit-grid">
+        <div class="reveal">
+          <span class="eyebrow">Visit the showroom</span>
+          <h2>Come and feel the fabric</h2>
+          <dl>
+            <div>
+              <dt>Address</dt>
+              <dd>Madhumita Fab Fashion, Subhas Avenue,<br />Opp. PNB Bank, Ranaghat, West Bengal 741201</dd>
+            </div>
+            <div>
+              <dt>Hours <span id="status"></span></dt>
+              <dd>Tuesday to Sunday, 10 AM &ndash; 9 PM<br />Monday closed</dd>
+            </div>
+            <div>
+              <dt>Contact</dt>
+              <dd id="contact"></dd>
+            </div>
+          </dl>
+
+          <!-- Interactive GPS Distance & Delivery Estimator -->
+          <div class="gps-card">
+            <div class="gps-card-top">
+              <b>Live GPS Distance &amp; Delivery Check</b>
+              <button type="button" class="link-btn dark" onclick="detectUserGPS()">Refresh GPS</button>
+            </div>
+            <p id="gpsDistanceOut" class="gps-result">Select a landmark or tap Refresh GPS</p>
+            <p id="gpsDeliveryNote" class="gps-perk">Same-day doorstep delivery across Ranaghat (741201).</p>
+            <div class="landmark-pills">
+              <button type="button" onclick="simulateGPS(23.1755, 88.5632, 'Saratpally')">Saratpally</button>
+              <button type="button" onclick="simulateGPS(23.1791, 88.5705, 'Ranaghat Station')">Ranaghat Station</button>
+              <button type="button" onclick="simulateGPS(23.1840, 88.5610, 'Siddheswaritala')">Siddheswaritala</button>
+              <button type="button" onclick="simulateGPS(23.2411, 88.5345, 'Fulia')">Fulia</button>
+              <button type="button" onclick="simulateGPS(22.5726, 88.3639, 'Kolkata')">Kolkata</button>
+            </div>
+          </div>
+
+          <div class="cta" style="margin-top:20px">
+            <a class="btn" id="mapLink" target="_blank" rel="noopener">Get directions</a>
+            <a class="btn ghost" id="fbLink" target="_blank" rel="noopener">Facebook</a>
+          </div>
+        </div>
+
+       <iframe
+          class="reveal"
+          title="Madhumita Fab Fashion, Subhas Avenue, Ranaghat"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d793.9835026540579!2d88.5664704!3d23.1758349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8c5b422917c7d%3A0x3c916837e5691b40!2sMadhumita%20Fab%20Fashion!5e1!3m2!1sen!2sin!4v1794738599377!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="no-print">
+    <div class="wrap foot-grid">
+      <div>
+        <h3>Madhumita Fab Fashion</h3>
+        <p>Subhas Avenue, Opp. PNB Bank, Ranaghat, West Bengal 741201</p>
+      </div>
+      <div class="foot-links">
+        <a href="#collection">Collection</a>
+        <a href="#about">Our Story</a>
+        <a href="#visit">Visit Us</a>
+        <a href="#admin-panel" id="footerAdminLink">Access for Admin</a>
+      </div>
+      <small>&copy; <span id="yr"></span> Madhumita Fab Fashion. All rights reserved. &bull; Eco-Optimized Storefront</small>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Bottom Bar -->
+  <div class="mbar no-print">
+    <a class="btn ghost" href="#visit">&#128205; Visit</a>
+    <button type="button" class="btn gold" onclick="openSaleModal()">&#129684; 20% Off</button>
+    <button type="button" class="btn" onclick="toggleDrawer(true)">Bag (<span id="bagCount2">0</span>)</button>
+  </div>
+
+  <!-- Slide-Over Saree Bag Drawer -->
+  <div class="shade no-print" id="shade" onclick="toggleDrawer(false)"></div>
+  <aside class="drawer no-print" id="drawer" aria-label="Shopping bag">
+    <div class="dh">
+      <h3>Your saree bag</h3>
+      <button type="button" onclick="toggleDrawer(false)" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="db">
+      <div id="bagItems"></div>
+
+      <div class="coupon-row">
+        <input id="couponInput" type="text" placeholder="Coupon: DIWALI20 or BULK25" />
+        <button type="button" class="btn sm-btn" onclick="applyCouponInput()">Apply</button>
+      </div>
+
+      <div class="sum-box">
+        <div class="sum-line"><span>Subtotal</span><span id="bagSubtotal">&#8377;0</span></div>
+        <div class="sum-line green"><span>Festive Discount</span><span id="bagDiscount">-&#8377;0</span></div>
+        <label class="note fp-check"><input type="checkbox" id="fpBag" onchange="renderBag()" /> Add fall &amp; pico finishing (+&#8377;150 per saree)</label>
+        <div class="sum"><span>Total</span><span id="bagTotal">&#8377;0</span></div>
+      </div>
+
+      <div class="drawer-ctas">
+        <button type="button" class="btn btn-sheen" id="proceedCheckoutBtn" onclick="proceedToCheckout()">Order Now &amp; Pay &rarr;</button>
+        <button type="button" class="btn ghost" id="quickWaOrderBtn" onclick="sendQuickWhatsAppOrder()">Send Quick Order on WhatsApp</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 3-Step Order & Payment Checkout Modal -->
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="modal-card modal-lg">
+      <div class="dh no-print">
+        <div>
+          <small class="modal-eyebrow">Madhumita Fab Fashion &bull; Secure Checkout</small>
+          <h3>Complete Your Saree Order</h3>
+        </div>
+        <button type="button" onclick="closeCheckoutModal()" aria-label="Close">&#10005;</button>
       </div>
 
       <!-- Checkout Form View -->
-      <div id="checkoutFormView" class="p-6 sm:p-8 grid lg:grid-cols-12 gap-8 no-print">
-        <div class="lg:col-span-7 space-y-6">
-          <!-- Step 1: Customer Details & GPS Address -->
-          <div class="bg-white p-5 rounded-2xl border border-[#D4AF37]/40 space-y-4">
-            <div class="flex items-center justify-between">
-              <h3 class="font-bold text-sm text-[#5A1220] uppercase tracking-wider">1. Customer Details &amp; GPS Address</h3>
-              <button type="button" onclick="autoFillGPSAddress()" class="text-xs bg-[#D4AF37]/25 text-[#5A1220] font-bold px-3 py-1 rounded-lg border border-[#D4AF37] hover:bg-[#D4AF37]/40">
-                📍 Auto-Fill via GPS
-              </button>
+      <div id="checkoutFormView" class="checkout-grid no-print">
+        <div class="checkout-left">
+          <div class="panel-box">
+            <div class="panel-head">
+              <h4>1. Customer &amp; Delivery Details</h4>
+              <button type="button" class="link-btn dark" onclick="autoFillGPSAddress()">&#128205; Auto-Fill Ranaghat GPS</button>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
-              <label class="cursor-pointer">
-                <input type="radio" name="deliveryMode" value="delivery" checked onchange="updateCheckoutTotals()" class="peer sr-only" />
-                <div class="p-3 rounded-xl border-2 border-gray-200 peer-checked:border-[#5A1220] peer-checked:bg-[#5A1220]/5 text-xs font-bold">
-                  🚚 Doorstep Delivery
-                  <p class="text-[11px] font-normal text-gray-500 mt-0.5">Free in Ranaghat 741201 / ₹2,000+</p>
-                </div>
+            <div class="mode-grid">
+              <label class="radio-card">
+                <input type="radio" name="deliveryMode" value="Home delivery" checked onchange="updateCheckoutTotals()" />
+                <span>
+                  <b>&#128666; Home Delivery</b>
+                  <small>Free in Ranaghat 741201 / &#8377;2,000+</small>
+                </span>
               </label>
-              <label class="cursor-pointer">
-                <input type="radio" name="deliveryMode" value="pickup" onchange="updateCheckoutTotals()" class="peer sr-only" />
-                <div class="p-3 rounded-xl border-2 border-gray-200 peer-checked:border-[#5A1220] peer-checked:bg-[#5A1220]/5 text-xs font-bold">
-                  🏪 Showroom Pickup
-                  <p class="text-[11px] font-normal text-gray-500 mt-0.5">Subhas Ave, Opp. PNB Bank, Ranaghat</p>
-                </div>
+              <label class="radio-card">
+                <input type="radio" name="deliveryMode" value="Showroom pickup" onchange="updateCheckoutTotals()" />
+                <span>
+                  <b>&#127978; Showroom Pickup</b>
+                  <small>Subhas Ave, Opp. PNB Bank</small>
+                </span>
               </label>
             </div>
 
-            <div class="grid sm:grid-cols-3 gap-3">
-              <input id="custUsername" type="text" placeholder="Username (e.g. @priyanshu) *" required class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
-              <input id="custName" type="text" placeholder="Full Name *" required class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
-              <input id="custPhone" type="tel" placeholder="10-Digit Mobile *" required class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+            <div class="form-row-3">
+              <input id="custUsername" type="text" placeholder="Username (e.g. @ananya)" />
+              <input id="custName" type="text" required placeholder="Full name *" autocomplete="name" />
+              <input id="custPhone" type="tel" required placeholder="Mobile number *" autocomplete="tel" />
             </div>
 
-            <div class="grid sm:grid-cols-3 gap-3">
-              <input id="custPin" type="text" value="741201" placeholder="PIN Code *" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
-              <input id="custCity" type="text" value="Ranaghat, Nadia" placeholder="City / Town *" class="sm:col-span-2 px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]" />
+            <div class="form-row-3">
+              <input id="custPin" type="text" value="741201" placeholder="PIN code" onchange="updateCheckoutTotals()" />
+              <input id="custCity" type="text" value="Ranaghat, Nadia" placeholder="City / Town" class="span-2" />
             </div>
 
-            <textarea id="custAddress" rows="2" placeholder="House No., Street, Locality (e.g., Saratpally / Subhas Ave, Ranaghat) *" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-[#5A1220]"></textarea>
+            <textarea id="custAddress" rows="2" placeholder="House no., street, locality (e.g. Saratpally / Subhas Ave, Ranaghat)"></textarea>
           </div>
 
-          <!-- Step 2: Payment Method Selector -->
-          <div class="bg-white p-5 rounded-2xl border border-[#D4AF37]/40 space-y-4">
-            <h3 class="font-bold text-sm text-[#5A1220] uppercase tracking-wider">2. Select Payment Method</h3>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <button type="button" onclick="selectPaymentTab('UPI')" id="tab-UPI" class="pay-tab active p-2.5 rounded-xl border-2 border-[#5A1220] bg-[#5A1220] text-white text-xs font-bold">📱 UPI / QR</button>
-              <button type="button" onclick="selectPaymentTab('CARD')" id="tab-CARD" class="pay-tab p-2.5 rounded-xl border border-gray-200 text-xs font-semibold">💳 Card</button>
-              <button type="button" onclick="selectPaymentTab('NETBANKING')" id="tab-NETBANKING" class="pay-tab p-2.5 rounded-xl border border-gray-200 text-xs font-semibold">🏦 NetBanking</button>
-              <button type="button" onclick="selectPaymentTab('COD')" id="tab-COD" class="pay-tab p-2.5 rounded-xl border border-gray-200 text-xs font-semibold">💵 Cash / COD</button>
+          <div class="panel-box">
+            <h4>2. Select Payment Method</h4>
+            <div class="pay-tabs">
+              <button type="button" id="payTab-UPI" class="pay-tab on" onclick="selectPaymentMethod('UPI')">&#128241; UPI / QR</button>
+              <button type="button" id="payTab-CARD" class="pay-tab" onclick="selectPaymentMethod('CARD')">&#128179; Card</button>
+              <button type="button" id="payTab-NETBANKING" class="pay-tab" onclick="selectPaymentMethod('NETBANKING')">&#127974; NetBanking</button>
+              <button type="button" id="payTab-COD" class="pay-tab" onclick="selectPaymentMethod('COD')">&#128181; Cash / COD</button>
             </div>
 
-            <!-- UPI Panel -->
-            <div id="panel-UPI" class="pay-panel space-y-3 pt-2">
-              <div class="flex flex-col sm:flex-row items-center gap-4 bg-[#FAF6F0] p-4 rounded-xl border border-[#D4AF37]/40">
-                <img id="upiQrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=madhumitafab@pnb%26pn=Madhumita%20Fab%20Fashion" alt="UPI QR Code" class="w-28 h-28 rounded-lg border border-[#D4AF37] bg-white p-1" />
-                <div class="space-y-2 flex-1">
-                  <p class="text-xs font-bold text-[#5A1220]">Scan with GPay, PhonePe, Paytm or BHIM</p>
-                  <p class="text-[11px] text-gray-600">Merchant: <strong>Madhumita Fab Fashion (madhumitafab@pnb)</strong></p>
-                  <div class="flex gap-2">
-                    <input id="upiIdInput" type="text" placeholder="Or enter UPI ID (e.g. name@okaxis)" class="flex-1 px-3 py-1.5 rounded-lg border border-gray-300 text-xs" />
-                    <button type="button" onclick="verifyUpiId()" class="bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold">Verify</button>
+            <div id="payPanel-UPI" class="pay-body">
+              <div class="upi-box">
+                <img id="upiQrImg" alt="UPI QR Code" />
+                <div>
+                  <b>Scan with GPay, PhonePe, Paytm or BHIM</b>
+                  <p class="note">Merchant: Madhumita Fab Fashion (madhumitafab@pnb)</p>
+                  <div class="upi-verify-row">
+                    <input id="upiIdInput" type="text" placeholder="Or enter UPI ID (name@okaxis)" />
+                    <button type="button" class="btn sm-btn" onclick="verifyUpiHandle()">Verify</button>
                   </div>
-                  <p id="upiVerifyStatus" class="text-[11px] text-emerald-700 font-semibold hidden">✓ Verified UPI Handle</p>
+                  <p id="upiVerifiedMsg" class="ok-msg hidden">&#10003; UPI ID Verified</p>
                 </div>
               </div>
             </div>
 
-            <!-- Card Panel -->
-            <div id="panel-CARD" class="pay-panel hidden space-y-3 pt-2">
-              <input type="text" maxlength="19" placeholder="Card Number (XXXX XXXX XXXX XXXX)" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" />
-              <div class="grid grid-cols-2 gap-3">
-                <input type="text" maxlength="5" placeholder="MM/YY" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" />
-                <input type="password" maxlength="3" placeholder="CVV (3 digits)" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" />
+            <div id="payPanel-CARD" class="pay-body hidden">
+              <input type="text" maxlength="19" placeholder="Card number (XXXX XXXX XXXX XXXX)" />
+              <div class="form-row-2" style="margin-top:8px">
+                <input type="text" maxlength="5" placeholder="MM/YY" />
+                <input type="password" maxlength="3" placeholder="CVV" />
               </div>
             </div>
 
-            <!-- NetBanking Panel -->
-            <div id="panel-NETBANKING" class="pay-panel hidden space-y-3 pt-2">
-              <p class="text-xs text-gray-600">Choose your preferred bank:</p>
-              <div class="grid grid-cols-2 gap-2 text-xs">
-                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" checked /> State Bank of India (SBI)</label>
-                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" /> Bandhan Bank</label>
-                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" /> Punjab National Bank (PNB)</label>
-                <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer"><input type="radio" name="bank" /> HDFC / ICICI Bank</label>
+            <div id="payPanel-NETBANKING" class="pay-body hidden">
+              <div class="bank-grid">
+                <label><input type="radio" name="bank" checked /> State Bank of India (SBI)</label>
+                <label><input type="radio" name="bank" /> Bandhan Bank</label>
+                <label><input type="radio" name="bank" /> Punjab National Bank (PNB)</label>
+                <label><input type="radio" name="bank" /> HDFC / ICICI Bank</label>
               </div>
             </div>
 
-            <!-- Cash on Delivery Panel -->
-            <div id="panel-COD" class="pay-panel hidden space-y-2 pt-2">
-              <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-                💵 <strong>Pay Cash or UPI on Delivery / Showroom Pickup:</strong> Zero advance required for Ranaghat (741201) orders!
-              </div>
+            <div id="payPanel-COD" class="pay-body hidden">
+              <p class="cod-note">&#128181; Pay by Cash or UPI at the showroom or upon doorstep delivery in Ranaghat (741201).</p>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Order Summary -->
-        <div class="lg:col-span-5 space-y-5">
-          <div class="bg-white p-5 rounded-2xl border border-[#D4AF37]/40 space-y-4">
-            <h3 class="font-bold text-sm text-[#5A1220] uppercase tracking-wider">Order Summary</h3>
-            <div id="checkoutItemsSummary" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
+        <div class="checkout-right">
+          <div class="panel-box">
+            <h4>Order Summary</h4>
+            <div id="checkoutItemsList" class="chk-items"></div>
+            <label class="note fp-check"><input type="checkbox" id="fpCheckout" onchange="updateCheckoutTotals()" /> Add fall &amp; pico finishing (+&#8377;150/saree)</label>
 
-            <label class="flex items-center justify-between p-3 rounded-xl bg-[#FAF6F0] border border-[#D4AF37]/40 cursor-pointer text-xs">
-              <span class="font-semibold text-[#2A1810]">🧵 Add Custom Fall &amp; Pico Finishing</span>
-              <input id="checkoutFallPico" type="checkbox" onchange="updateCheckoutTotals()" class="accent-[#5A1220] w-4 h-4" />
-            </label>
-
-            <div class="space-y-1.5 text-xs pt-2 border-t">
-              <div class="flex justify-between"><span>Items Subtotal</span><span id="chkSubtotal">₹0</span></div>
-              <div class="flex justify-between text-emerald-700 font-semibold"><span>Active Coupon (<span id="chkCouponCode">NONE</span>)</span><span id="chkDiscount">-₹0</span></div>
-              <div class="flex justify-between"><span>Fall &amp; Pico Tailoring (+₹150/saree)</span><span id="chkFallPico">₹0</span></div>
-              <div class="flex justify-between"><span>Delivery Charges</span><span id="chkShipping">FREE</span></div>
-              <div class="flex justify-between text-lg font-bold text-[#5A1220] pt-2 border-t">
-                <span>Grand Total</span>
-                <span id="chkGrandTotal">₹0</span>
-              </div>
+            <div class="chk-totals">
+              <div><span>Subtotal</span><span id="chkSub">&#8377;0</span></div>
+              <div class="green"><span>Coupon (<b id="chkCode">NONE</b>)</span><span id="chkDisc">-&#8377;0</span></div>
+              <div><span>Fall &amp; Pico</span><span id="chkFp">&#8377;0</span></div>
+              <div><span>Delivery</span><span id="chkShip">FREE</span></div>
+              <div class="grand"><span>Total Payable</span><span id="chkGrand">&#8377;0</span></div>
             </div>
 
-            <button type="button" onclick="confirmAndPlaceOrder()" class="w-full bg-[#5A1220] hover:bg-[#3D0B15] text-[#F5E1A4] font-bold py-4 rounded-xl text-sm shadow-xl transition">
-              🛍️ Order Now
-            </button>
+            <button type="button" class="btn btn-sheen full-btn" onclick="completeOrder()">&#128717;&#65039; Order Now</button>
           </div>
         </div>
       </div>
 
-      <!-- Step 3: Confirmed Printable Receipt View -->
-      <div id="checkoutSuccessView" class="hidden p-6 sm:p-8 space-y-5 printable-area">
-        <div class="text-center space-y-2">
-          <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl mx-auto no-print">✓</div>
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">Official Payment &amp; Order Receipt</span>
-          <h3 class="serif-font text-3xl font-bold text-[#2A1810]">Madhumita Fab Fashion (Est. 1980)</h3>
-          <p class="text-xs text-gray-600">Subhas Avenue, Near Dispensary Lane, Ranaghat - 741201 • GSTIN: 19AABFM8492K1Z5</p>
+      <!-- Confirmed Printable Receipt View -->
+      <div id="checkoutReceiptView" class="receipt-view hidden printable-area">
+        <div class="receipt-header">
+          <span class="badge-ok">Official Order &amp; Payment Receipt</span>
+          <h3>Madhumita Fab Fashion (Est. 1980)</h3>
+          <p>Subhas Avenue, Opp. PNB Bank, Ranaghat, West Bengal 741201 &bull; GSTIN: 19AABFM8492K1Z5</p>
         </div>
-
-        <div id="receiptSummaryBox" class="max-w-2xl mx-auto bg-white p-6 rounded-2xl border-2 border-[#D4AF37] text-xs space-y-4"></div>
-
-        <div class="flex flex-wrap justify-center gap-3 pt-2 no-print">
-          <button onclick="window.print()" class="bg-[#5A1220] text-[#F5E1A4] px-5 py-2.5 rounded-xl text-xs font-bold">🖨️ Print / Save PDF Receipt</button>
-          <a href="#database-section" onclick="closeCheckoutModal()" class="bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold">🔒 Access for Admin</a>
-          <button onclick="closeCheckoutModal()" class="bg-gray-200 text-gray-800 px-5 py-2.5 rounded-xl text-xs font-bold">Continue Shopping</button>
+        <div id="receiptContentBox" class="receipt-box"></div>
+        <div class="receipt-actions no-print">
+          <button type="button" class="btn" onclick="window.print()">&#128424;&#65039; Print / Save Receipt</button>
+          <button type="button" class="btn ghost" id="receiptWaBtn">&#128172; Confirm on WhatsApp</button>
+          <a href="#admin-panel" class="btn gold" onclick="closeCheckoutModal()">&#128274; Access for Admin</a>
+          <button type="button" class="btn ghost" onclick="closeCheckoutModal()">Continue Shopping</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Festive Diwali 20% OFF Sale Popup Modal -->
-  <div id="saleModal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 no-print">
-    <div class="max-w-md w-full bg-gradient-to-b from-[#5A1220] to-[#2A0810] text-[#FAF6F0] rounded-3xl border-2 border-[#D4AF37] p-6 sm:p-8 relative text-center shadow-2xl">
-      <button onclick="closeSaleModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-white hover:bg-white/20">✕</button>
-      <div class="text-3xl mb-2">🪔</div>
-      <span class="text-[11px] uppercase tracking-widest bg-[#D4AF37] text-[#2A1810] font-bold px-3 py-1 rounded-full">Limited Time Festive Offer</span>
-      <h3 class="serif-font text-3xl sm:text-4xl font-bold mt-3 text-[#F5E1A4]">Diwali &amp; Wedding Sale — Flat 20% OFF</h3>
-      <p class="text-xs text-white/80 mt-2">
-        Celebrate with authentic handloom sarees from <strong>Madhumita Fab Fashion, Subhas Ave, Ranaghat</strong>. Apply your instant coupon at checkout:
-      </p>
-
-      <div class="my-5 space-y-2.5">
-        <div class="bg-black/30 border border-[#D4AF37] rounded-2xl p-3 flex items-center justify-between">
-          <div class="text-left">
-            <p class="text-xs font-bold text-[#F5E1A4]">DIWALI20</p>
-            <p class="text-[11px] text-white/70">Flat 20% OFF on any Saree</p>
-          </div>
-          <button onclick="applySaleCoupon('DIWALI20')" class="bg-[#D4AF37] text-[#2A1810] text-xs font-bold px-3.5 py-2 rounded-xl hover:bg-[#F5E1A4]">Apply 20% OFF</button>
+  <!-- Diwali 20% Sale Coupon Modal -->
+  <div class="modal-backdrop no-print" id="saleModal">
+    <div class="modal-card modal-sm sale-card">
+      <button type="button" class="modal-close" onclick="closeSaleModal()" aria-label="Close">&#10005;</button>
+      <div class="sale-icon">&#129684;</div>
+      <span class="eyebrow gold-text">Festive Privilege</span>
+      <h3>Diwali &amp; Wedding Sale &mdash; Flat 20% Off</h3>
+      <p>Apply an instant festive coupon to your saree bag:</p>
+      <div class="coupon-cards">
+        <div class="c-card">
+          <div><b>DIWALI20</b><small>Flat 20% off any saree</small></div>
+          <button type="button" class="btn gold sm-btn" onclick="applyCouponCode('DIWALI20')">Apply</button>
         </div>
-
-        <div class="bg-black/30 border border-[#D4AF37]/50 rounded-2xl p-3 flex items-center justify-between">
-          <div class="text-left">
-            <p class="text-xs font-bold text-[#F5E1A4]">BULK25</p>
-            <p class="text-[11px] text-white/70">Flat 25% OFF on Orders ₹10,000+</p>
-          </div>
-          <button onclick="applySaleCoupon('BULK25')" class="bg-white/15 text-white text-xs font-bold px-3.5 py-2 rounded-xl hover:bg-white/25">Apply 25% OFF</button>
+        <div class="c-card">
+          <div><b>BULK25</b><small>25% off orders &#8377;10,000+</small></div>
+          <button type="button" class="btn ghost light sm-btn" onclick="applyCouponCode('BULK25')">Apply</button>
         </div>
       </div>
-
-      <button onclick="closeSaleModal()" class="text-xs text-white/60 underline hover:text-white">Continue Browsing Collection</button>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toastBox" class="fixed bottom-5 right-5 z-50 bg-[#2A1810] text-[#F5E1A4] border border-[#D4AF37] px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold hidden no-print"></div>
+  <!-- Admin Login & Email OTP Password Recovery Modal -->
+  <div class="modal-backdrop no-print" id="adminLoginModal">
+    <div class="modal-card modal-sm">
+      <button type="button" class="modal-close dark" onclick="closeAdminLoginModal()" aria-label="Close">&#10005;</button>
 
-  <!-- Leaflet JS & External Application Script -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <div id="adminSignInView">
+        <span class="eyebrow">Showroom Management</span>
+        <h3>Access for Admin</h3>
+        <p class="note">Sign in with authorized showroom credentials to view orders, update stock, and manage receipts.</p>
+        <form class="form" style="margin-top:14px" onsubmit="submitAdminLogin(event)">
+          <input id="adminUserIn" required placeholder="Admin username" />
+          <input id="adminPassIn" required type="password" placeholder="Admin password" />
+          <p id="adminLoginErr" class="err-msg hidden">Invalid username or password.</p>
+          <button type="submit" class="btn btn-sheen">&#128274; Access for Admin</button>
+          <button type="button" class="link-btn dark" onclick="toggleAdminRecoveryView(true)">Forgot password / Reset via Seller Email?</button>
+        </form>
+      </div>
+
+      <div id="adminRecoverView" class="hidden">
+        <span class="eyebrow">Seller Account Recovery</span>
+        <h3>Reset via Seller Email</h3>
+        <p class="note">Enter your connected showroom email ID to receive a 6-digit verification code.</p>
+        <div class="form" style="margin-top:14px">
+          <div class="coupon-row" style="margin:0">
+            <input id="recoverEmailIn" type="email" placeholder="Connected seller email ID" />
+            <button type="button" class="btn sm-btn" onclick="sendSellerOtp()">Send OTP</button>
+          </div>
+          <div id="otpNoticeBox" class="otp-box hidden"></div>
+          <div id="otpFormFields" class="form hidden">
+            <input id="recoverOtpIn" maxlength="6" placeholder="6-digit OTP code" />
+            <input id="recoverNewUserIn" placeholder="New admin username" />
+            <input id="recoverNewPassIn" type="password" placeholder="New admin password (min 6 chars)" />
+            <button type="button" class="btn" onclick="resetAdminWithOtp()">Verify OTP &amp; Save</button>
+          </div>
+          <p id="recoverErr" class="err-msg hidden"></p>
+          <button type="button" class="link-btn dark" onclick="toggleAdminRecoveryView(false)">&larr; Back to Admin Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Security & Email Settings Modal -->
+  <div class="modal-backdrop no-print" id="adminSettingsModal">
+    <div class="modal-card modal-sm">
+      <button type="button" class="modal-close dark" onclick="closeAdminSettingsModal()" aria-label="Close">&#10005;</button>
+      <span class="eyebrow">Seller Account Security</span>
+      <h3>Credentials &amp; Email Link</h3>
+      <p class="note">Connect the store owner&rsquo;s email ID for recovery and update your Admin Username or Password.</p>
+      <form class="form" style="margin-top:14px" onsubmit="saveAdminSettings(event)">
+        <label class="field-lbl">Connected Seller Email ID</label>
+        <input id="setEmailIn" type="email" required placeholder="owner@madhumitafabfashion.com" />
+        <label class="field-lbl">Admin Username</label>
+        <input id="setUserIn" required placeholder="Admin username" />
+        <label class="field-lbl">Current Password (Required)</label>
+        <input id="setCurPassIn" type="password" required placeholder="Verify current password" />
+        <label class="field-lbl">New Password (Optional)</label>
+        <input id="setNewPassIn" type="password" placeholder="Leave blank to keep current password" />
+        <p id="settingsErr" class="err-msg hidden"></p>
+        <button type="submit" class="btn btn-sheen">Save Security Settings</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" role="status"></div>
+
+  <!-- External Application Script -->
   <script src="script.js"></script>
 </body>
 </html>
